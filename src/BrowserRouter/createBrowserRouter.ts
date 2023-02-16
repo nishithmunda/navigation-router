@@ -15,10 +15,10 @@ export function createBrowserRouter(
 ): CreateBrowserRouterReturnType {
   let subscribers: any = [];
 
-  const subscribe = (subscriber: any) => {
+  const subscribe = (subscriber: StateType) => {
     subscribers.push(subscriber);
     return () => {
-      subscribers = subscriber.filter((sub: any) => sub !== subscriber);
+      subscribers = subscribers.filter((sub: StateType) => sub !== subscriber);
     };
   };
 

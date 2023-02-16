@@ -20,3 +20,19 @@ export interface RouterStateContextType {
   state: StateType;
   visited: Array<string>;
 }
+
+export type NavigationRoutes = {
+  id: string;
+  index: number;
+  key: string;
+  ondispose: null | any;
+  sameDocument: boolean;
+  url: string;
+};
+
+export interface CreateBrowserRouterReturnType {
+  navigate: (url: string, state?: any, option?: NavigateOptionsType) => void;
+  subscribe: any;
+  visited: string[];
+  state: StateType;
+}

@@ -4,5 +4,5 @@ export type LocationType = {
     pathname: string;
     search: string;
     hash: string;
-    protocol:string;
-  };
+    protocol: string;
+};

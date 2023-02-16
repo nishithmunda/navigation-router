@@ -5,11 +5,8 @@
 // const root = createRoot(container); // createRoot(container!) if you use TypeScript
 // root.render(<App />);
 
-export {
-  useLocation,
-  useNavigate,
-  useRouterState,
-  LocationType,
-} from "./hooks";
+export { useLocation, useNavigate, useRouterState } from "./hooks";
+export type { LocationType } from "./hooks";
 
-export { RouterProvider, Route, RouteProps } from "./components";
+export { RouterProvider, Route } from "./components";
+export type { RouteProps } from "./components";

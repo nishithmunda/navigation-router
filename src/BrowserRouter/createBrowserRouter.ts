@@ -1,17 +1,24 @@
 import { RouteProps } from "../components/Route/type";
-import { NavigateOptionsType, StateType } from "./type";
+import {
+  CreateBrowserRouterReturnType,
+  NavigateOptionsType,
+  NavigationRoutes,
+  StateType,
+} from "./type";
 
-const findRoute = (routes, pathname) => {
+const findRoute = (routes: RouteProps[], pathname: string) => {
   return routes.find((route) => route.path === pathname) || null;
 };
 
-export function createBrowserRouter(routes: RouteProps[]) {
+export function createBrowserRouter(
+  routes: RouteProps[]
+): CreateBrowserRouterReturnType {
   let subscribers: any = [];
 
-  const subscribe = (subscriber) => {
+  const subscribe = (subscriber: any) => {
     subscribers.push(subscriber);
     return () => {
-      subscribers = subscriber.filter((sub) => sub !== subscriber);
+      subscribers = subscriber.filter((sub: any) => sub !== subscriber);
     };
   };
 
@@ -24,7 +31,8 @@ export function createBrowserRouter(routes: RouteProps[]) {
 
   //Return visited routes
   const visitedroutes = () => {
-    let listArray = window.navigation.entries();
+    //@ts-ignore
+    let listArray: NavigationRoutes[] = window.navigation.entries();
     let list =
       listArray.length > 0
         ? new Set(listArray.map((nav) => new URL(nav?.url)?.pathname))
@@ -33,12 +41,12 @@ export function createBrowserRouter(routes: RouteProps[]) {
     return Array.from(list);
   };
 
-  const updateState = (obj) => {
+  const updateState = (obj: any) => {
     state = {
       ...state,
       ...obj,
     };
-    subscribers.forEach((subscriber) => subscriber(state));
+    subscribers.forEach((subscriber: any) => subscriber(state));
   };
 
   const completeNavigation = async (url: string) => {
@@ -59,6 +67,7 @@ export function createBrowserRouter(routes: RouteProps[]) {
     });
   };
 
+  //@ts-ignore
   window.navigation.addEventListener("navigate", listner);
   completeNavigation(window.location.href);
 
@@ -67,6 +76,7 @@ export function createBrowserRouter(routes: RouteProps[]) {
     state?: any,
     options?: NavigateOptionsType
   ) => {
+    //@ts-ignore
     window.navigation.navigate(url, {
       history: options?.replaceMode ? "replace" : "push",
       state: state,

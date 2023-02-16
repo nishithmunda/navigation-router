@@ -1,5 +1,7 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import { createBrowserRouter } from "../../BrowserRouter/createBrowserRouter";
 import { RouterContext } from "../../BrowserRouter/RouterContext";
+import { CreateBrowserRouterReturnType } from "../../BrowserRouter/type";
 import { RouteProps } from "../Route/type";
 import { RouterProviderView } from "../RouterProviderView";
 
@@ -15,7 +17,7 @@ export function RouterProvider({ children }: { children: ReactElement[] }) {
     setRoutes(list);
   }, [children]);
 
-  const router: any = createBrowserRouter(routes);
+  const router: CreateBrowserRouterReturnType = createBrowserRouter(routes);
 
   return (
     <RouterContext.Provider value={{ navigate: router?.navigate }}>
@@ -26,7 +28,4 @@ export function RouterProvider({ children }: { children: ReactElement[] }) {
 
 interface RouterProvider {
   children: React.ReactElement;
-}
-function createBrowserRouter(routes: RouteProps[]) {
-  throw new Error("Function not implemented.");
 }

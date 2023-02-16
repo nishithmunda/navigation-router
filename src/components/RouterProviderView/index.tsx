@@ -1,9 +1,16 @@
 import React, { useContext } from "react";
 import { useSyncExternalStore } from "react";
 import { RouterStateContext } from "../../BrowserRouter/RouterContext";
-import { StateType } from "../../BrowserRouter/type";
+import {
+  CreateBrowserRouterReturnType,
+  StateType,
+} from "../../BrowserRouter/type";
 
-export const RouterProviderView = ({ router }) => {
+export const RouterProviderView = ({
+  router,
+}: {
+  router: CreateBrowserRouterReturnType;
+}) => {
   const state: StateType = useSyncExternalStore(
     router?.subscribe,
     () => router?.state
